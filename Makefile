@@ -13,7 +13,7 @@ inc_dir := inc
 default: $(test_target)
 
 $(test_target): $(test_objects) $(som_objects)
-	@echo Linking $< to $@...
+	@echo Linking $@...
 	@$(CXX) -o $(test_target) $(addprefix build/,$(notdir $(test_objects)) $(notdir $(som_objects))) -l$(test_boost_libs)
 
 %.o : %.cpp 
