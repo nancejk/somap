@@ -13,9 +13,9 @@ inc_dir := inc
 default: $(test_target)
 
 $(test_target): $(test_objects) $(som_objects)
-	@echo Linking $*...
-	$(CXX) -o $(test_target) $(addprefix build/,$(notdir $(test_objects)) $(notdir $(som_objects))) -l$(test_boost_libs)
+	@echo Linking $< to $@...
+	@$(CXX) -o $(test_target) $(addprefix build/,$(notdir $(test_objects)) $(notdir $(som_objects))) -l$(test_boost_libs)
 
 %.o : %.cpp 
-	@echo Compiling $*...
-	$(CXX) -I$(inc_dir) -c $< -o $(addprefix build/,$(notdir $@)) 
+	@echo Compiling $< to $@...
+	@$(CXX) -I$(inc_dir) -c $< -o $(addprefix build/,$(notdir $@)) $(test_flags) 
