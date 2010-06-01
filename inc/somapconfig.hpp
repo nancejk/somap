@@ -19,7 +19,7 @@ private:
 public:
   somapconfig ();
   // This is the static factory method.
-  static somapconfig* digest(int, char**);
+  static somapconfig* digest(int, char** );
   
   // Returns true if the filename provided
   // is already used on the filesystem.

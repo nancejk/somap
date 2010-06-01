@@ -17,10 +17,10 @@ BOOST_AUTO_TEST_CASE(default_constructor) {
 }
 
 BOOST_AUTO_TEST_CASE(config_factory) {
-  char* test_argv[4];
+  char* test_argv[5];
   test_argv[0] = "something";
   test_argv[1] = "-m hello";
-  test_argv[2] = "-b 100";
+  test_argv[2] = "-b 1281";
   test_argv[3] = "-d 100";
   somapconfig* config; 
   try{
@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(config_factory) {
   }
 
   BOOST_CHECK( config->getSideLength() == 100 );
-  BOOST_CHECK( config->getBinCount()   == 100 );
+  BOOST_CHECK( config->getBinCount()   == 1281 );
   BOOST_CHECK( config->getFileName()   == "hello" );
   BOOST_CHECK( config->verify()        == true );
 
