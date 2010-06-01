@@ -1,11 +1,21 @@
 test_boost_libs := boost_unit_test_framework
 test_flags := -Wno-write-strings
-cxxsources := $(wildcard src/*.cpp tests/*.cpp)
 
-default: check
+test_target := bin/unit_tests
+som_sources := $(wildcard src/*.cpp)
+test_sources := $(wildcard tests/*.cpp)
 
-check: $(cxxsources)
-	g++ -c -o build/som_temp -Iinc -Wall src/somapconfig.cpp
-	g++ -c -o build/test_temp -Iinc -Wall tests/tests.cpp $(test_flags)
-	g++ -o bin/testing -Wall build/test_temp build/som_temp -lboost_unit_test_framework
-	./bin/testing
+som_objects := $(som_sources:$.cpp=$.o) 
+test_objects := $(test_sources:%.cpp=%.o) 
+
+inc_dir := inc
+
+default: $(test_target)
+
+$(test_target): $(test_objects) $(som_objects)
+	@echo Linking $*...
+	$(CXX) -o $(test_target) $(addprefix build/,$(notdir $(test_objects)) $(notdir $(som_objects))) -l$(test_boost_libs)
+
+%.o : %.cpp 
+	@echo Compiling $*...
+	$(CXX) -I$(inc_dir) -c $< -o $(addprefix build/,$(notdir $@)) 
