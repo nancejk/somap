@@ -8,7 +8,8 @@ test_sources := $(wildcard tests/*.cpp)
 som_objects := $(som_sources:$.cpp=$.o) 
 test_objects := $(test_sources:%.cpp=%.o) 
 
-inc_dir := inc
+inc_dir := inc /usr/local/include/boost-1_38
+inc := $(addprefix -I,$(inc_dir))
 
 default: $(test_target)
 
@@ -17,5 +18,5 @@ $(test_target): $(test_objects) $(som_objects)
 	@$(CXX) -o $(test_target) $(addprefix build/,$(notdir $(test_objects)) $(notdir $(som_objects))) -l$(test_boost_libs)
 
 %.o : %.cpp 
-	@echo Compiling $< to $@...
-	@$(CXX) -I$(inc_dir) -c $< -o $(addprefix build/,$(notdir $@)) $(test_flags) 
+	@echo Compiling $< ... 
+	@$(CXX) $(inc) -c $< -o $(addprefix build/,$(notdir $@)) $(test_flags) 
