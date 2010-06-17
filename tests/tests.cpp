@@ -14,15 +14,15 @@ bool somapnode_default_constructor(int, char**);
 
 int main( int argc, char** argv ) {
   std::cout << "somapconfig_default_constructor " << 
-    ( somapconfig_default_constructor(argc,argv) ? "PASS": "FAIL" ) <<
+    ( somapconfig_default_constructor(argc,argv) ? "PASS": "\aFAIL" ) <<
     std::endl;
   
   std::cout << "somapconfig_args_constructor " <<
-    ( somapconfig_args_constructor(argc, argv) ? "PASS": "FAIL" ) <<
+    ( somapconfig_args_constructor(argc, argv) ? "PASS": "\aFAIL" ) <<
     std::endl;
 
   std::cout << "somapnode_default_constructor " <<
-    ( somapnode_default_constructor(argc, argv) ? "PASS" : "FAIL" ) << 
+    ( somapnode_default_constructor(argc, argv) ? "PASS" : "\aFAIL" ) << 
     std::endl;
 
   return 0;
