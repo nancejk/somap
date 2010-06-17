@@ -2,7 +2,8 @@
 #include <rng.hpp>
 
 somapnode::somapnode(xypair pos, int len) :
-  position(pos)
+  position(pos), dataStore(0), nodeID(0)
+  // TODO initialize nodeID from a static map member
 {
   dataStore.reserve(len);
   
