@@ -1,5 +1,4 @@
 #include <iostream>
-#include <new>
 
 // This tests that the default constructor does its job
 // and sets sensible values in the fields.

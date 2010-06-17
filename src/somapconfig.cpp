@@ -57,10 +57,11 @@ void somapconfig::setBinCount(int newBinCount) {
 }
 
 void somapconfig::setBinCount(std::string newBinCount) {
+  //TODO this shouldn't let you set final to a string!
   int final = -1;
   std::istringstream buffer(newBinCount);
   buffer >> final;
-  this->setBinCount(newBinCount);
+  this->setBinCount(final);
 }
 
 int somapconfig::getBinCount() {
