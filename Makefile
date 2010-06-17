@@ -1,4 +1,3 @@
-test_boost_libs := boost_unit_test_framework
 test_flags := -Wno-write-strings -Weffc++ -pedantic
 
 test_target := bin/unit_tests
@@ -14,7 +13,7 @@ default: $(test_target)
 
 $(test_target): $(som_objects) $(test_objects)
 	@echo LD $@
-	@$(CXX) -o $(test_target) $(addprefix build/,$(notdir $(test_objects)) $(notdir $(som_objects))) -l$(test_boost_libs)
+	@$(CXX) -o $(test_target) $(addprefix build/,$(notdir $(test_objects)) $(notdir $(som_objects))) 
 
 %.o : %.cpp 
 	@echo CXX $< 
