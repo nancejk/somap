@@ -1,5 +1,4 @@
 #include <iostream>
-#include <assert.h>
 #include <new>
 
 // This tests that the default constructor does its job
@@ -11,8 +10,13 @@ bool somapconfig_default_constructor(int, char**);
 bool somapconfig_args_constructor(int, char**);
 
 int main( int argc, char** argv ) {
-  assert( somapconfig_default_constructor(argc, argv) );
-  assert( somapconfig_args_constructor(argc, argv) );
+  std::cout << "somapconfig_default_constructor " << 
+    ( somapconfig_default_constructor(argc,argv) ? "PASS": "FAIL" ) <<
+    std::endl;
+  
+  std::cout << "somapconfig_args_constructor " <<
+    ( somapconfig_args_constructor(argc, argv) ? "PASS": "FAIL" ) <<
+    std::endl;
 
   return 0;
 }
