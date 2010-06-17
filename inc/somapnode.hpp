@@ -36,6 +36,6 @@ private:
 
   // somapfunctors need to access the private members of the
   // nodes.
-  friend class somapfunctor;
+  friend class cartesian_distance;
 };
 #endif

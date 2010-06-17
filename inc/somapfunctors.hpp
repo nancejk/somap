@@ -1,6 +1,7 @@
 #ifndef __SOMAPFUNCTORS
 #define __SOMAPFUNCTORS
 #include <somapnode.hpp>
+#include <cmath>
 
 class somapfunctor {
  virtual double operator()(somapnode lhs, somapnode rhs) = 0;
