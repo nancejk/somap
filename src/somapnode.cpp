@@ -1,8 +1,6 @@
 #include <somapnode.hpp>
 #include <rng.hpp>
 
-#define MAXWEIGHT 1
-
 somapnode::somapnode(xypair pos, int len) {
   position = pos;
   dataStore.reserve(len);
@@ -20,4 +18,12 @@ void somapnode::printWeight() {
   while (wi != dataStore.end())
     std::cout << *wi++ << " ";
   std::cout << std::endl;
+}
+
+weights somapnode::getWeight() {
+  return (*this).dataStore;
+}
+
+xypair somapnode::getPosition() {
+  return (*this).position;
 }

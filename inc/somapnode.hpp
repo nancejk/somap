@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+#define MAXWEIGHT 1
+
 // Most likely implementation
 typedef double score;
 typedef std::vector<double> weights;
@@ -15,6 +17,8 @@ public:
   // highest scorer, or neighbour (conveyed by DISTANCE).  I
   // assumed the learning function is global visible.
   void learn(weights input, int distance);
+  weights getWeight();
+  xypair getPosition();
   // defined this to test if it initializes correctly
   void printWeight();
 private:

@@ -1,4 +1,4 @@
-#include <somapnode.hpp>
+#include <somapconfig.hpp>
 #include <memory>
 
 bool somapconfig_default_constructor( int arg_count, char** arg_vector ) {
