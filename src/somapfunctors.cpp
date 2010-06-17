@@ -10,3 +10,11 @@ double cartesian_distance::operator()(somapnode lhs, somapnode rhs) {
 
   return sqrt( result );
 }
+
+somapfunctor::~somapfunctor() {
+  //DO NOTHING
+}
+
+cartesian_distance::~cartesian_distance() {
+  //DO NOTHING
+}

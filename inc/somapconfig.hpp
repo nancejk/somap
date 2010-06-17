@@ -4,15 +4,9 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <string>
-#include <exception>
+#include <somapexceptions.hpp>
 #include <sstream>
 #include <boost/algorithm/string/trim.hpp>
-
-class badConfig: public std::exception {
-  virtual const char* what(char arg) {
-    return "Bad argument passed.";
-  };
-};
 
 class somapconfig {
 private:
