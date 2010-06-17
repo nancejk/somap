@@ -18,6 +18,7 @@ private:
   std::string fname;
 public:
   somapconfig ();
+  somapconfig (int, char**);
   // This is the static factory method.
   static somapconfig* digest(int, char** );
   

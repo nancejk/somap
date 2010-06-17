@@ -4,6 +4,27 @@ somapconfig::somapconfig() :
   sidelength(-1), bincount(-1), fname("") 
 {}
 
+somapconfig::somapconfig(int argc, char** args) :
+  sidelength(-1), bincount(-1), fname("")
+{
+  int cursor;
+  while( (cursor = getopt(argc, args, "b:m:d:")) != -1 ) {
+    switch(cursor) {
+      case('b'):
+	this->setBinCount(optarg);
+	break;
+      case('d'):
+	this->setSideLength(optarg);
+	break;
+      case('m'):
+	this->setFilename(optarg);
+	break;
+      default:
+	throw badConfig();
+    }
+  }
+}
+
 bool somapconfig::setFilename(std::string theFileName) {
   (*this).fname = boost::algorithm::trim_copy(theFileName);
   

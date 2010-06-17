@@ -4,6 +4,7 @@
 #include <boost/test/auto_unit_test.hpp>
 #include <somapconfig.hpp>
 #include <iostream>
+#include <new>
 
 // Make sure the default constructor does what it is
 // supposed to do, which is set the fields to nonsense
@@ -22,19 +23,12 @@ BOOST_AUTO_TEST_CASE(config_factory) {
   test_argv[1] = "-m hello";
   test_argv[2] = "-b 1281";
   test_argv[3] = "-d 100";
-  somapconfig* config; 
-  try{
-    config = somapconfig::digest(4,test_argv);
-  }
-  catch(std::exception& e){
-    std::cout << e.what() << std::endl;
-  }
+  std::auto_ptr<somapconfig> config( new (std::nothrow) somapconfig(4,test_argv) );
+  if( config.get() == NULL ) throw badConfig();
 
   BOOST_CHECK( config->getSideLength() == 100 );
   BOOST_CHECK( config->getBinCount()   == 1281 );
   BOOST_CHECK( config->getFileName()   == "hello" );
   BOOST_CHECK( config->verify()        == true );
-
-  delete config;
 }
 
