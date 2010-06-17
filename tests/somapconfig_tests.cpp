@@ -42,4 +42,3 @@ bool somapconfig_args_constructor( int arg_count, char** arg_vector ) {
 
   return returnValue; 
 }
-
