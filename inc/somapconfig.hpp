@@ -1,3 +1,6 @@
+#ifndef __SOMAPCONFIG
+#define __SOMAPCONFIG
+
 #include <unistd.h>
 #include <sys/stat.h>
 #include <string>
@@ -42,3 +45,4 @@ public:
   // Verifies the configuration.
   bool verify();
 };
+#endif

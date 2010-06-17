@@ -1,8 +1,9 @@
 #include <somapnode.hpp>
 #include <rng.hpp>
 
-somapnode::somapnode(xypair pos, int len) {
-  position = pos;
+somapnode::somapnode(xypair pos, int len) :
+  position(pos)
+{
   dataStore.reserve(len);
   
   // randomize the initial weights...

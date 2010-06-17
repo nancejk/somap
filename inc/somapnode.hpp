@@ -1,3 +1,5 @@
+#ifndef __SOMAPNODE
+#define __SOMAPNODE
 #include <iostream>
 #include <vector>
 
@@ -7,6 +9,9 @@
 typedef double score;
 typedef std::vector<double> weights;
 typedef std::pair<int,int> xypair;
+
+// forward class declaration
+class somapfunctor;
 
 class somapnode {
 public:
@@ -28,4 +33,9 @@ private:
   xypair position;
   // IDs may be useful when looking for maximally excited node
   int nodeID;
+
+  // somapfunctors need to access the private members of the
+  // nodes.
+  friend class somapfunctor;
 };
+#endif

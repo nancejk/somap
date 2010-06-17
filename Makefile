@@ -1,5 +1,5 @@
 test_boost_libs := boost_unit_test_framework
-test_flags := -Wno-write-strings
+test_flags := -Wno-write-strings -Weffc++ -pedantic
 
 test_target := bin/unit_tests
 som_sources := $(wildcard src/*.cpp)
