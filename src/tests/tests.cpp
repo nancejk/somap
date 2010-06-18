@@ -21,9 +21,11 @@ int main( int argc, char** argv ) {
     ( somapconfig_default_constructor(argc,argv) ? "PASS": "\aFAIL" ) <<
     std::endl;
   
-  std::cout << "somapconfig_args_constructor " <<
-    ( somapconfig_args_constructor(argc, argv) ? "PASS": "\aFAIL" ) <<
-    std::endl;
+  std::cout << "somapconfig_args_constructor ";
+  if( argc > 1 ) 
+    std::cout << ( somapconfig_args_constructor(argc, argv) ? "PASS": "\aFAIL" ); 
+  else std::cout << "NA";
+  std::cout << std::endl;
 
   std::cout << "somapnode_default_constructor " <<
     ( somapnode_default_constructor(argc, argv) ? "PASS" : "\aFAIL" ) << 
