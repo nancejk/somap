@@ -15,37 +15,4 @@ typedef std::pair<int,int> xypair;
 class somapComparisonFunctor;
 class somapCorrectionFunctor;
 
-template <typename comparisonFunction, typename correctionFunction> 
-class somapnode {
-public:
-  somapnode(xypair pos, int len);
-  // update the node due to INPUT vector.  Needs to know if it was
-  // highest scorer, or neighbour (conveyed by DISTANCE).  I
-  // assumed the learning function is global visible.
-  void learn(weights input, int distance);
-  void setWeight(weights);
-  weights getWeight();
-  xypair getPosition();
-  // defined this to test if it initializes correctly
-  void printWeight();
-private:
-  // The function object that performs comparisons.
-  std::auto_ptr<somapComparisonFunctor> comparator;
-
-  // The function object that gets correction values.
-  std::auto_ptr<somapCorrectionFunctor> corrector;
-
-  // weights vector
-  weights dataStore;
-  
-  // this node's position in the overall map
-  xypair position;
-  
-  // IDs may be useful when looking for maximally excited node
-  int nodeID;
-
-  // somapfunctors need to access the private members of the
-  // nodes.
-  friend class cartesian_distance;
-};
 #endif
