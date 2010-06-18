@@ -14,8 +14,10 @@ typedef std::pair<int,int> xypair;
 // forward class declaration
 class somapComparisonFunctor;
 class somapCorrectionFunctor;
+class cartesian_distance;
+class linear_correction;
 
 // forward template class declaration
-template <typename comparisonFunction, typename correctionFunction>
+template <typename comparisonFunction = cartesian_distance, typename correctionFunction = linear_correction>
 class somapnode;
 #endif
