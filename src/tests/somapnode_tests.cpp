@@ -7,7 +7,7 @@
 
 bool somapnode_default_constructor(int argc, char *argv[]) {
   std::auto_ptr<somapnode> 
-    default_node(new (std::nothrow) somapnode(DEF_POS, DEF_BINS));
+    default_node(new (std::nothrow) somapnode<cartesian_distance,linear_correction>(DEF_POS, DEF_BINS));
   
   weights nodeWeights = default_node->getWeight();
   weights::iterator wi = nodeWeights.begin();
