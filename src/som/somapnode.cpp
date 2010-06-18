@@ -22,6 +22,10 @@ void somapnode::printWeight() {
   std::cout << std::endl;
 }
 
+void somapnode::setWeight(weights input) {
+  dataStore = input;
+}
+
 weights somapnode::getWeight() {
   return (*this).dataStore;
 }

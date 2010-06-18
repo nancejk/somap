@@ -16,12 +16,11 @@ class somapfunctor;
 class somapnode {
 public:
   somapnode(xypair pos, int len);
-  // to grade INPUT vector against node's DATASTORE for similarity
-  // score compare(weights input);
   // update the node due to INPUT vector.  Needs to know if it was
   // highest scorer, or neighbour (conveyed by DISTANCE).  I
   // assumed the learning function is global visible.
   void learn(weights input, int distance);
+  void setWeight(weights);
   weights getWeight();
   xypair getPosition();
   // defined this to test if it initializes correctly

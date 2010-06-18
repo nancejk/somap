@@ -12,6 +12,10 @@ bool somapconfig_args_constructor(int, char**);
 // that the bins and position are set correctly by default.
 bool somapnode_default_constructor(int, char**);
 
+// Checks that cartesian distance function works for input of the
+// first 3 pythagorean triples.
+bool somapfunctor_cartesian_distance(int, char**);
+
 int main( int argc, char** argv ) {
   std::cout << "somapconfig_default_constructor " << 
     ( somapconfig_default_constructor(argc,argv) ? "PASS": "\aFAIL" ) <<
@@ -24,6 +28,9 @@ int main( int argc, char** argv ) {
   std::cout << "somapnode_default_constructor " <<
     ( somapnode_default_constructor(argc, argv) ? "PASS" : "\aFAIL" ) << 
     std::endl;
+
+  std::cout << "somapfunctor_cartesian_distance " <<
+    ( somapfunctor_cartesian_distance(argc, argv) ? "PASS" : "\aFAIL" ) <<    std::endl;
 
   return 0;
 }
