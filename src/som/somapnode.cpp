@@ -8,6 +8,7 @@ public:
   // update the node due to INPUT vector.  Needs to know if it was
   // highest scorer, or neighbour (conveyed by DISTANCE).  I
   // assumed the learning function is global visible.
+  score compare(weights input);
   void learn(weights input, int distance);
   void setWeight(weights);
   weights getWeight();
@@ -75,4 +76,11 @@ weights somapnode<cmp, cor>::getWeight() {
 template <typename cmp, typename cor>
 xypair somapnode<cmp, cor>::getPosition() {
   return (*this).position;
+}
+
+template <typename cmp, typename cor>
+score somapnode<cmp, cor>::compare(weights input) {
+  // FIXME: help Jared, I don't know what I'm doing.  I want to call
+  // the comparison function on the input vector and the datastore.
+  return cmp((*this).dataStore, input);
 }
