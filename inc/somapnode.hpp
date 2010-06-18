@@ -2,6 +2,7 @@
 #define __SOMAPNODE
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #define MAXWEIGHT 1
 
@@ -11,8 +12,10 @@ typedef std::vector<double> weights;
 typedef std::pair<int,int> xypair;
 
 // forward class declaration
-class somapfunctor;
+class somapComparisonFunctor;
+class somapCorrectionFunctor;
 
+template <typename comparisonFunction, typename correctionFunction> 
 class somapnode {
 public:
   somapnode(xypair pos, int len);
@@ -26,10 +29,18 @@ public:
   // defined this to test if it initializes correctly
   void printWeight();
 private:
+  // The function object that performs comparisons.
+  std::auto_ptr<somapComparisonFunctor> comparator;
+
+  // The function object that gets correction values.
+  std::auto_ptr<somapCorrectionFunctor> corrector;
+
   // weights vector
   weights dataStore;
+  
   // this node's position in the overall map
   xypair position;
+  
   // IDs may be useful when looking for maximally excited node
   int nodeID;
 
