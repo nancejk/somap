@@ -11,7 +11,29 @@ class somapFunctorBase {
 class somapComparisonFunctor : public somapFunctorBase {
   public:
     virtual double operator()(weights, weights) = 0;
-    virtual ~somapComparisonFunctor();
+    virtual ~somapComparisonFunctor() = 0;
+};
+
+class temporalCorrectionFunctor : public somapFunctorBase {
+  protected:
+    double time_constant;
+  public:
+    virtual double operator()(double);
+    virtual ~temporalCorrectionFunctor();
+};
+
+class spatialCorrectionFunctor : public somapFunctorBase {
+  protected:
+    double attenuation_length;
+  public:
+    virtual double operator()(double);
+    virtual ~spatialCorrectionFunctor();
+};
+
+class somapCorrectionFunctor : public somapFunctorBase {
+  public:
+    virtual double operator()(double, double) = 0;
+    virtual ~somapCorrectionFunctor();
 };
 
 class cartesian_distance: public somapComparisonFunctor {
@@ -20,21 +42,22 @@ class cartesian_distance: public somapComparisonFunctor {
     virtual ~cartesian_distance();
 };
 
-class somapCorrectionFunctor : public somapFunctorBase {
-  public:
-    virtual double operator()(weights, double, double) = 0;
-    virtual ~somapCorrectionFunctor();
-};
-
 class linear_correction: public somapCorrectionFunctor {
   private:
-    double correction_strength;
+    double strength;
   public:
     linear_correction(double);
-    virtual double operator()(weights, double, double);
+    virtual double operator()(double, double);
     virtual ~linear_correction();
 };
 
-
+class correctionComposition: public somapFunctorBase {
+  private:
+    std::auto_ptr<temporalCorrectionFunctor> t;
+    std::auto_ptr<spatialCorrectionFunctor> s;
+  public:
+    correctionComposition(temporalCorrectionFunctor*, spatialCorrectionFunctor*);
+    virtual double operator()(double,double);
+};
 
 #endif
