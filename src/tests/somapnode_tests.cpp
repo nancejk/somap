@@ -2,12 +2,12 @@
 #include <memory>
 
 // Sensible default values for node constructor
-#define DEF_POS xypair(0, 0)
-#define DEF_BINS 10
+const xypair defPos = xypair(0, 0);
+enum {defBins=10};
 
 bool somapnode_default_constructor(int argc, char *argv[]) {
   std::auto_ptr<somapnode> 
-    default_node(new (std::nothrow) somapnode<cartesian_distance,linear_correction>(DEF_POS, DEF_BINS));
+    default_node(new (std::nothrow) somapnode(defPos, defBins));
   
   weights nodeWeights = default_node->getWeight();
   weights::iterator wi = nodeWeights.begin();
@@ -18,6 +18,6 @@ bool somapnode_default_constructor(int argc, char *argv[]) {
     wi++;
 
   // Check the position's set to what I constructed it with
-  return wi == nodeWeights.end() && nodeWeights.size() == DEF_BINS &&
-    default_node->getPosition() == DEF_POS;
+  return wi == nodeWeights.end() && nodeWeights.size() == defBins &&
+    default_node->getPosition() == defPos;
 }

@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 
-#define MAXWEIGHT 1
+enum {MAXWEIGHT=1};
 
 // Most likely implementation
 typedef double score;
@@ -18,6 +18,7 @@ public:
   // highest scorer, or neighbour (conveyed by DISTANCE).  I
   // assumed the learning function is global visible.
   void learn(weights input, int distance);
+  double compare(weights input);
   void setWeight(weights);
   weights getWeight();
   xypair getPosition();
