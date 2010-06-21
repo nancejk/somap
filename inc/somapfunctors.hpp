@@ -3,7 +3,12 @@
 #include <somapnode.hpp>
 #include <cmath>
 
-class somapComparisonFunctor {
+class somapFunctorBase {
+  public:
+    virtual ~somapFunctorBase() = 0;
+};
+
+class somapComparisonFunctor : public somapFunctorBase {
   public:
     virtual double operator()(weights, weights) = 0;
     virtual ~somapComparisonFunctor();
@@ -15,7 +20,7 @@ class cartesian_distance: public somapComparisonFunctor {
     virtual ~cartesian_distance();
 };
 
-class somapCorrectionFunctor {
+class somapCorrectionFunctor : public somapFunctorBase {
   public:
     virtual double operator()(weights, double, double) = 0;
     virtual ~somapCorrectionFunctor();
@@ -29,4 +34,7 @@ class linear_correction: public somapCorrectionFunctor {
     virtual double operator()(weights, double, double);
     virtual ~linear_correction();
 };
+
+
+
 #endif
