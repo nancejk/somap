@@ -33,9 +33,5 @@ private:
   
   // IDs may be useful when looking for maximally excited node
   int nodeID;
-
-  // somapfunctors need to access the private members of the
-  // nodes.
-  friend class cartesian_distance;
 };
 #endif
