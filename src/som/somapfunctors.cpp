@@ -1,5 +1,9 @@
 #include <somapfunctors.hpp>
 
+somapFunctorBase::~somapFunctorBase() {
+  //DO NOTHING
+}
+
 somapComparisonFunctor::~somapComparisonFunctor() {
   //DO NOTHING
 }
@@ -42,4 +46,17 @@ double linear_correction::operator()(double oldValue, double newValue) {
 
 linear_correction::~linear_correction() {
   // DO NOTHING
+}
+
+space_step_function::space_step_function(double newCutoff) :
+  cutoff(newCutoff)
+{}
+
+double space_step_function::operator()(double query) {
+  if ( query > cutoff ) return 0.0;
+  return 1.0;
+}
+
+space_step_function::~space_step_function() {
+  //DO NOTHING
 }

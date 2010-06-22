@@ -5,20 +5,20 @@
 
 class somapFunctorBase {
   public:
-    virtual ~somapFunctorBase() = 0;
+    virtual ~somapFunctorBase();
 };
 
 class somapComparisonFunctor : public somapFunctorBase {
   public:
     virtual double operator()(weights, weights) = 0;
-    virtual ~somapComparisonFunctor() = 0;
+    virtual ~somapComparisonFunctor();
 };
 
 class temporalCorrectionFunctor : public somapFunctorBase {
   protected:
     double time_constant;
   public:
-    virtual double operator()(double);
+    virtual double operator()(double) = 0;
     virtual ~temporalCorrectionFunctor();
 };
 
@@ -26,7 +26,7 @@ class spatialCorrectionFunctor : public somapFunctorBase {
   protected:
     double attenuation_length;
   public:
-    virtual double operator()(double);
+    virtual double operator()(double) = 0;
     virtual ~spatialCorrectionFunctor();
 };
 
@@ -49,6 +49,24 @@ class linear_correction: public somapCorrectionFunctor {
     linear_correction(double);
     virtual double operator()(double, double);
     virtual ~linear_correction();
+};
+
+class space_step_function: public spatialCorrectionFunctor {
+  private:
+    double cutoff;
+  public:
+    space_step_function(double);
+    double operator()(double);
+    ~space_step_function();
+};
+
+class time_step_function: public temporalCorrectionFunctor {
+  private:
+    double cutoff;
+  public:
+    time_step_function(double);
+    double operator()(double);
+    ~time_step_function();
 };
 
 class correctionComposition: public somapFunctorBase {
