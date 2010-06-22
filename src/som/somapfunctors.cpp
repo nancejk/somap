@@ -1,5 +1,21 @@
 #include <somapfunctors.hpp>
 
+somapComparisonFunctor::~somapComparisonFunctor() {
+  //DO NOTHING
+}
+
+temporalCorrectionFunctor::~temporalCorrectionFunctor() {
+  //DO NOTHING
+}
+
+spatialCorrectionFunctor::~spatialCorrectionFunctor() {
+  //DO NOTHING
+}
+
+somapCorrectionFunctor::~somapCorrectionFunctor() {
+  //DO NOTHING
+}
+
 double cartesian_distance::operator()(weights lhs, weights rhs) {
 //TODO throw an exception if lhs.size != rhs.size
   double result(0.0);
@@ -11,19 +27,15 @@ double cartesian_distance::operator()(weights lhs, weights rhs) {
   return sqrt( result );
 }
 
-somapComparisonFunctor::~somapComparisonFunctor() {
-  //DO NOTHING
-}
-
 cartesian_distance::~cartesian_distance() {
   //DO NOTHING
 }
 
 linear_correction::linear_correction(double newCorrectionStrength) :
-  correction_strength(newCorrectionStrength)
+  strength(newCorrectionStrength)
 { }
 
-double linear_correction::operator()(weights input, double iterations, double distance) {
+double linear_correction::operator()(double oldValue, double newValue) {
   //TODO daniel fix me please
   return 0.0;
 }
